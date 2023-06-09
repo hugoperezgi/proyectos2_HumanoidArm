@@ -1,4 +1,11 @@
-#include <stdint.h>
+#include <Wire.h>
+#include <Adafruit_PWMServoDriver.h>
+
+
+#define SERVO_FREQ 50 // Analog servos run at ~50 Hz updates
+
+
+Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver(); 
 
 /*
  * 
@@ -152,48 +159,61 @@
 
 #define STEP_SERVOID_11 0.566667
 
+uint8_t servoid = 0;
+uint8_t i = 0;
+uint8_t j = 0;
+
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Push button");
+
+  pwm.begin();
+
+  pwm.setOscillatorFrequency(27000000);
+  pwm.setPWMFreq(SERVO_FREQ); 
+
+  delay(10);
+
+}
+
+void loop() {
+  //Cerrar mano quitando indice
+  i=0;
+  while (i<180){
+    pwm.setPWM(0, 0, -i*STEP_SERVOID_0 + SERVOMAX_thumb_B);
+    pwm.setPWM(1, 0,  SERVOMAX_index_B);
+    pwm.setPWM(2, 0, -i*STEP_SERVOID_2 + SERVOMAX_middle_B);
+    pwm.setPWM(3, 0, -i*STEP_SERVOID_3 + SERVOMAX_ring_B);
+    pwm.setPWM(4, 0, -i*STEP_SERVOID_4 + SERVOMAX_pinky_B);
+    pwm.setPWM(5, 0, -i*STEP_SERVOID_5 + SERVOMAX_thumb_A);
+    pwm.setPWM(6, 0,  SERVOMAX_index_A);
+    pwm.setPWM(7, 0, -i*STEP_SERVOID_7 + SERVOMAX_middle_A);
+    pwm.setPWM(8, 0, -i*STEP_SERVOID_8 + SERVOMAX_ring_A);
+    pwm.setPWM(9, 0, -i*STEP_SERVOID_9 + SERVOMAX_pinky_A);      
+    pwm.setPWM(11, 0, i*STEP_SERVOID_11+ SERVOMIN_palm);
+    delay(1);
+    i++;
+  }
+  //Bajar la mano (rotar la muñeca)
+  j=0;
+  while (j<180){
+    pwm.setPWM(15, 0, j*STEP_SERVOID_15+SERVOMIN_wrist);
+    j++;
+    delay(5);
+  }
+
+  delay(500);
+  //Subir la mano (rotar la muñeca)
+  j=0;
+  while (j<180){
+    pwm.setPWM(15, 0, -j*STEP_SERVOID_15+SERVOMAX_wrist);
+    j++;
+    delay(5);
+  }
 
 
 
+}
 
 
-// /**
-//  * SERVOMIN_ values corresponding to the servoid given:
-//  * 
-//  * SERVOMINS_Fingers[servoid] = SERVOMIN_finger_X
-//  * 
-//  * Inner servos:
-//  * thumb_B == servoid=0; index_B == servoid=1; middle_B == servoid=2; ring_B == servoid=3; pinky_B == servoid=4
-//  * 
-//  * Outer servos:
-//  * thumb_A == servoid=5; index_A == servoid=6; middle_A == servoid=7; ring_A == servoid=8; pinky_A == servoid=9
-//  * 
-// */
-// uint16_t SERVOMINS_Fingers[10] = {SERVOMIN_thumb_B, SERVOMIN_index_B, SERVOMIN_middle_B, SERVOMIN_ring_B, SERVOMIN_pinky_B, SERVOMIN_thumb_A, SERVOMIN_index_A, SERVOMIN_middle_A, SERVOMIN_ring_A, SERVOMIN_pinky_A};
-
-// /**
-//  * SERVOMAX_ values corresponding to the servoid given:
-//  * 
-//  * SERVOMAXS_Fingers[servoid] = SERVOMAX_finger_X
-//  * 
-//  * Inner servos:
-//  * thumb_B == servoid=0; index_B == servoid=1; middle_B == servoid=2; ring_B == servoid=3; pinky_B == servoid=4
-//  * 
-//  * Outer servos:
-//  * thumb_A == servoid=5; index_A == servoid=6; middle_A == servoid=7; ring_A == servoid=8; pinky_A == servoid=9
-//  * 
-// */
-// uint16_t SERVOMAXS_Fingers[10] = {SERVOMAX_thumb_B, SERVOMAX_index_B, SERVOMAX_middle_B, SERVOMAX_ring_B, SERVOMAX_pinky_B, SERVOMAX_thumb_A, SERVOMAX_index_A, SERVOMAX_middle_A, SERVOMAX_ring_A, SERVOMAX_pinky_A};
-// /**
-//  * Returns the pulselen needed to turn a servo into X degree position
-//  * 
-//  *  pulselen_from_degrees[servoid][degrees]
-//  * 
-// */
-// uint16_t pulselen_from_degrees[10][181];
-
-//   for (i = 0; i < 181; i++){
-//     for(servoid=0; servoid<10; servoid++){
-//       pulselen_from_degrees[servoid][i] = map(i,0,180,SERVOMINS_Fingers[servoid],SERVOMAXS_Fingers[servoid]);
-//     }
-//   }

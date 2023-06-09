@@ -18,7 +18,7 @@
 
 void openCloseHand_array(){
   for (i = 0; i < 181; i++){
-    for(servoid=0; servoid<10; servoid++){
+    for(servoid=0; servoid<11; servoid++){
       pwm.setPWM(servoid, 0, pulselen_from_degrees[servoid][i]); 
     }
   }
@@ -26,7 +26,7 @@ void openCloseHand_array(){
   delay(250);
 
   for (i = 180; i < 181; i--){  //tl;dr: Overflow causes it to jump from 0 to 255 so no bueno if using i<=0
-    for(servoid=0; servoid<10; servoid++){
+    for(servoid=0; servoid<11; servoid++){
       pwm.setPWM(servoid, 0, pulselen_from_degrees[servoid][i]);
       
     }
@@ -48,7 +48,7 @@ void openCloseHand(){
         pwm.setPWM(7, 0, i*STEP_SERVOID_7 + SERVOMIN_middle_A);
         pwm.setPWM(8, 0, i*STEP_SERVOID_8 + SERVOMIN_ring_A);
         pwm.setPWM(9, 0, i*STEP_SERVOID_9 + SERVOMIN_pinky_A);
-        pwm.setPWM(10, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
+        pwm.setPWM(11, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
         i++;
     }
     i=0;
@@ -63,7 +63,7 @@ void openCloseHand(){
         pwm.setPWM(7, 0, -i*STEP_SERVOID_7 + SERVOMAX_middle_A);
         pwm.setPWM(8, 0, -i*STEP_SERVOID_8 + SERVOMAX_ring_A);
         pwm.setPWM(9, 0, -i*STEP_SERVOID_9 + SERVOMAX_pinky_A);      
-        pwm.setPWM(10, 0, i*STEP_SERVOID_11+ SERVOMIN_palm);
+        pwm.setPWM(11, 0, i*STEP_SERVOID_11+ SERVOMIN_palm);
         i++;
     }
 }
@@ -75,7 +75,7 @@ void signLangA_array(){
 
     for (i = 0; i < 181; i++){
         for(servoid=0; servoid<11; servoid++){
-            if(servoid == 5 || servoid == 0 || servoid ==10){pwm.setPWM(servoid, 0,pulselen_from_degrees[servoid][0]);}
+            if(servoid == 5 || servoid == 0 || servoid ==11){pwm.setPWM(servoid, 0,pulselen_from_degrees[servoid][0]);}
             pwm.setPWM(servoid, 0, pulselen_from_degrees[servoid][i]); 
         }
     }
@@ -95,7 +95,7 @@ void signLangA(){
         pwm.setPWM(7, 0, i*STEP_SERVOID_7 + SERVOMIN_middle_A);
         pwm.setPWM(8, 0, i*STEP_SERVOID_8 + SERVOMIN_ring_A);
         pwm.setPWM(9, 0, i*STEP_SERVOID_9 + SERVOMIN_pinky_A);
-        pwm.setPWM(10, 0, SERVOMAX_palm);
+        pwm.setPWM(11, 0, SERVOMAX_palm);
         i++;
     }
     // i=0;
@@ -110,7 +110,7 @@ void signLangA(){
     //     pwm.setPWM(7, 0, -i*STEP_SERVOID_7 + SERVOMAX_middle_A);
     //     pwm.setPWM(8, 0, -i*STEP_SERVOID_8 + SERVOMAX_ring_A);
     //     pwm.setPWM(9, 0, -i*STEP_SERVOID_9 + SERVOMAX_pinky_A);        
-    //     pwm.setPWM(10, 0, SERVOMAX_palm);
+    //     pwm.setPWM(11, 0, SERVOMAX_palm);
     //     i++;
     // }
 }
@@ -121,11 +121,11 @@ void signLangA(){
 */
 void signLangB_array(){
 
-    for(servoid=0; servoid<10; servoid++){
+    for(servoid=0; servoid<11; servoid++){
         pwm.setPWM(servoid, 0, pulselen_from_degrees[servoid][0]); 
     }
 
-    servoid=10;
+    servoid=11;
     for (i = 0; i < 181; i++){
         pwm.setPWM(servoid, 0, pulselen_from_degrees[servoid][i]); 
     }
@@ -155,7 +155,7 @@ void signLangB(){
         // pwm.setPWM(8, 0, SERVOMIN_ring_A);
         // pwm.setPWM(9, 0, SERVOMIN_pinky_A);        
         delay(3);
-        pwm.setPWM(10, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
+        pwm.setPWM(11, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
         i++;
     }
     // i=0;
@@ -171,7 +171,7 @@ void signLangB(){
     //     // pwm.setPWM(8, 0, SERVOMAX_ring_A);
     //     // pwm.setPWM(9, 0, SERVOMAX_pinky_A);        
     //     delay(3);
-    //     pwm.setPWM(10, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
+    //     pwm.setPWM(11, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
     //     i++;
     // }
 }
@@ -196,7 +196,7 @@ void signLangC(){
     pwm.setPWM(7, 0, SERVOMIN_middle_A);
     pwm.setPWM(8, 0, SERVOMIN_ring_A);
     pwm.setPWM(9, 0, SERVOMIN_pinky_A);
-    pwm.setPWM(10, 0, SERVOMAX_palm);
+    pwm.setPWM(11, 0, SERVOMAX_palm);
 }
 
 
@@ -225,7 +225,7 @@ void signLangD(){
         pwm.setPWM(7, 0, i*STEP_SERVOID_7 + SERVOMIN_middle_A);
         pwm.setPWM(8, 0, i*STEP_SERVOID_8 + SERVOMIN_ring_A);
         pwm.setPWM(9, 0, i*STEP_SERVOID_9 + SERVOMIN_pinky_A);
-        pwm.setPWM(10, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
+        pwm.setPWM(11, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
         i++;
     }
     // i=0;
@@ -240,7 +240,7 @@ void signLangD(){
     //     pwm.setPWM(7, 0, -i*STEP_SERVOID_7 + SERVOMAX_middle_A);
     //     pwm.setPWM(8, 0, -i*STEP_SERVOID_8 + SERVOMAX_ring_A);
     //     pwm.setPWM(9, 0, -i*STEP_SERVOID_9 + SERVOMAX_pinky_A);        
-    //     pwm.setPWM(10, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
+    //     pwm.setPWM(11, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
     //     i++;
     // }
 
@@ -270,7 +270,7 @@ void signLangE(){
         pwm.setPWM(7, 0, i*STEP_SERVOID_7 + SERVOMIN_middle_A);
         pwm.setPWM(8, 0, i*STEP_SERVOID_8 + SERVOMIN_ring_A);
         pwm.setPWM(9, 0, i*STEP_SERVOID_9 + SERVOMIN_pinky_A);
-        pwm.setPWM(10, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
+        pwm.setPWM(11, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
         i++;
     }
     // i=0;
@@ -285,7 +285,7 @@ void signLangE(){
     //     pwm.setPWM(7, 0, -i*STEP_SERVOID_7 + SERVOMAX_middle_A);
     //     pwm.setPWM(8, 0, -i*STEP_SERVOID_8 + SERVOMAX_ring_A);
     //     pwm.setPWM(9, 0, -i*STEP_SERVOID_9 + SERVOMAX_pinky_A);        
-    //     pwm.setPWM(10, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
+    //     pwm.setPWM(11, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
     //     i++;
     // }
 }
@@ -296,7 +296,7 @@ void signLangE(){
 void signLangF_array(){
     for (i = 0; i < 181; i++){
         for(servoid=0; servoid<11; servoid++){
-            if(!(servoid == 0 || servoid == 1 || servoid == 5 || servoid == 6 || servoid == 10)){pwm.setPWM(servoid, 0,pulselen_from_degrees[servoid][0]);}
+            if(!(servoid == 0 || servoid == 1 || servoid == 5 || servoid == 6 || servoid == 11)){pwm.setPWM(servoid, 0,pulselen_from_degrees[servoid][0]);}
             pwm.setPWM(servoid, 0, pulselen_from_degrees[servoid][i]); 
         }
     }
@@ -315,7 +315,7 @@ void signLangF(){
         pwm.setPWM(7, 0, SERVOMIN_middle_A);
         pwm.setPWM(8, 0, SERVOMIN_ring_A);
         pwm.setPWM(9, 0, SERVOMIN_pinky_A);
-        pwm.setPWM(10, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
+        pwm.setPWM(11, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
         i++;
     }
     // i=0;
@@ -330,7 +330,7 @@ void signLangF(){
     //     pwm.setPWM(7, 0, SERVOMAX_middle_A);
     //     pwm.setPWM(8, 0, SERVOMAX_ring_A);
     //     pwm.setPWM(9, 0, SERVOMAX_pinky_A);        
-    //     pwm.setPWM(10, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
+    //     pwm.setPWM(11, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
     //     i++;
     // }
 }
@@ -360,7 +360,7 @@ void signLangI(){
         pwm.setPWM(7, 0, i*STEP_SERVOID_7 + SERVOMIN_middle_A);
         pwm.setPWM(8, 0, i*STEP_SERVOID_8 + SERVOMIN_ring_A);
         pwm.setPWM(9, 0, SERVOMIN_pinky_A);
-        pwm.setPWM(10, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
+        pwm.setPWM(11, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
         i++;
     }
     // i=0;
@@ -375,7 +375,7 @@ void signLangI(){
     //     pwm.setPWM(7, 0, -i*STEP_SERVOID_7 + SERVOMAX_middle_A);
     //     pwm.setPWM(8, 0, -i*STEP_SERVOID_8 + SERVOMAX_ring_A);
     //     pwm.setPWM(9, 0, SERVOMAX_pinky_A);        
-    //     pwm.setPWM(10, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
+    //     pwm.setPWM(11, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
     //     i++;
     // }
 }
@@ -405,7 +405,7 @@ void signLangK(){
         pwm.setPWM(7, 0, i*STEP_SERVOID_7 + SERVOMIN_middle_A);
         pwm.setPWM(8, 0, i*STEP_SERVOID_8 + SERVOMIN_ring_A);
         pwm.setPWM(9, 0, i*STEP_SERVOID_9 + SERVOMIN_pinky_A);
-        pwm.setPWM(10, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
+        pwm.setPWM(11, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
         i++;
     }
     // i=0;
@@ -420,7 +420,7 @@ void signLangK(){
     //     pwm.setPWM(7, 0, -i*STEP_SERVOID_7 + SERVOMAX_middle_A);
     //     pwm.setPWM(8, 0, -i*STEP_SERVOID_8 + SERVOMAX_ring_A);
     //     pwm.setPWM(9, 0, -i*STEP_SERVOID_9 + SERVOMAX_pinky_A);        
-    //     pwm.setPWM(10, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
+    //     pwm.setPWM(11, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
     //     i++;
     // }
 }
@@ -431,7 +431,7 @@ void signLangK(){
 void signLangL_array(){
     for (i = 0; i < 181; i++){
         for(servoid=0; servoid<11; servoid++){
-            if(servoid == 0 || servoid == 1 || servoid == 5 || servoid == 6 || servoid == 10){pwm.setPWM(servoid, 0,pulselen_from_degrees[servoid][0]);}
+            if(servoid == 0 || servoid == 1 || servoid == 5 || servoid == 6 || servoid == 11){pwm.setPWM(servoid, 0,pulselen_from_degrees[servoid][0]);}
             pwm.setPWM(servoid, 0, pulselen_from_degrees[servoid][i]); 
         }
     }
@@ -451,7 +451,7 @@ void signLangL(){
         pwm.setPWM(7, 0, i*STEP_SERVOID_7 + SERVOMIN_middle_A);
         pwm.setPWM(8, 0, i*STEP_SERVOID_8 + SERVOMIN_ring_A);
         pwm.setPWM(9, 0, i*STEP_SERVOID_9 + SERVOMIN_pinky_A);
-        pwm.setPWM(10, 0, SERVOMAX_palm);
+        pwm.setPWM(11, 0, SERVOMAX_palm);
         i++;
     }
     // i=0;
@@ -466,7 +466,7 @@ void signLangL(){
     //     pwm.setPWM(7, 0, -i*STEP_SERVOID_7 + SERVOMAX_middle_A);
     //     pwm.setPWM(8, 0, -i*STEP_SERVOID_8 + SERVOMAX_ring_A);
     //     pwm.setPWM(9, 0, -i*STEP_SERVOID_9 + SERVOMAX_pinky_A);        
-    //     pwm.setPWM(10, 0, SERVOMIN_palm);
+    //     pwm.setPWM(11, 0, SERVOMIN_palm);
     //     i++;
     // }
 }
@@ -496,7 +496,7 @@ uint8_t i=0;
         pwm.setPWM(7, 0, i*STEP_SERVOID_7 + SERVOMIN_middle_A);
         pwm.setPWM(8, 0, i*STEP_SERVOID_8 + SERVOMIN_ring_A);
         pwm.setPWM(9, 0, i*STEP_SERVOID_9 + SERVOMIN_pinky_A);
-        pwm.setPWM(10, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
+        pwm.setPWM(11, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
         i++;
     }
     // i=0;
@@ -511,7 +511,7 @@ uint8_t i=0;
     //     pwm.setPWM(7, 0, -i*STEP_SERVOID_7 + SERVOMAX_middle_A);
     //     pwm.setPWM(8, 0, -i*STEP_SERVOID_8 + SERVOMAX_ring_A);
     //     pwm.setPWM(9, 0, -i*STEP_SERVOID_9 + SERVOMAX_pinky_A);        
-    //     pwm.setPWM(10, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
+    //     pwm.setPWM(11, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
     //     i++;
     // }
 }
@@ -539,7 +539,7 @@ void signLangQ(){
         pwm.setPWM(7, 0, i*STEP_SERVOID_7 + SERVOMIN_middle_A);
         pwm.setPWM(8, 0, i*STEP_SERVOID_8 + SERVOMIN_ring_A);
         pwm.setPWM(9, 0, i*STEP_SERVOID_9 + SERVOMIN_pinky_A);
-        pwm.setPWM(10, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
+        pwm.setPWM(11, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
         i++;
     }
     // i=0;
@@ -554,7 +554,7 @@ void signLangQ(){
     //     pwm.setPWM(7, 0, -i*STEP_SERVOID_7 + SERVOMAX_middle_A);
     //     pwm.setPWM(8, 0, -i*STEP_SERVOID_8 + SERVOMAX_ring_A);
     //     pwm.setPWM(9, 0, -i*STEP_SERVOID_9 + SERVOMAX_pinky_A);        
-    //     pwm.setPWM(10, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
+    //     pwm.setPWM(11, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
     //     i++;
     // }
 }
@@ -582,7 +582,7 @@ void signLangU(){
         pwm.setPWM(7, 0, i*STEP_SERVOID_7 + SERVOMIN_middle_A);
         pwm.setPWM(8, 0, i*STEP_SERVOID_8 + SERVOMIN_ring_A);
         pwm.setPWM(9, 0, i*STEP_SERVOID_9 + SERVOMIN_pinky_A);
-        pwm.setPWM(10, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
+        pwm.setPWM(11, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
         i++;
     }
     // i=0;
@@ -597,7 +597,7 @@ void signLangU(){
     //     pwm.setPWM(7, 0, -i*STEP_SERVOID_7 + SERVOMAX_middle_A);
     //     pwm.setPWM(8, 0, -i*STEP_SERVOID_8 + SERVOMAX_ring_A);
     //     pwm.setPWM(9, 0, -i*STEP_SERVOID_9 + SERVOMAX_pinky_A);        
-    //     pwm.setPWM(10, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
+    //     pwm.setPWM(11, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
     //     i++;
     // }
 
@@ -628,7 +628,7 @@ void signLangV(){
         pwm.setPWM(7, 0, SERVOMIN_middle_A);
         pwm.setPWM(8, 0, i*STEP_SERVOID_8 + SERVOMIN_ring_A);
         pwm.setPWM(9, 0, i*STEP_SERVOID_9 + SERVOMIN_pinky_A);
-        pwm.setPWM(10, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
+        pwm.setPWM(11, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
         i++;
     }
     // i=0;
@@ -643,7 +643,7 @@ void signLangV(){
     //     pwm.SERVOMAX_middle_A);
     //     pwm.setPWM(8, 0, -i*STEP_SERVOID_8 + SERVOMAX_ring_A);
     //     pwm.setPWM(9, 0, -i*STEP_SERVOID_9 + SERVOMAX_pinky_A);        
-    //     pwm.setPWM(10, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
+    //     pwm.setPWM(11, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
     //     i++;
     // }
 }
@@ -673,7 +673,7 @@ void signLangW(){
         pwm.setPWM(7, 0, SERVOMIN_middle_A);
         pwm.setPWM(8, 0, SERVOMIN_ring_A);
         pwm.setPWM(9, 0, i*STEP_SERVOID_9 + SERVOMIN_pinky_A);
-        pwm.setPWM(10, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
+        pwm.setPWM(11, 0, -i*STEP_SERVOID_11+SERVOMAX_palm);
         i++;
     }
     // i=0;
@@ -688,7 +688,7 @@ void signLangW(){
     //     pwm.setPWM(7, 0, SERVOMAX_middle_A);
     //     pwm.setPWM(8, 0, SERVOMAX_ring_A);
     //     pwm.setPWM(9, 0, -i*STEP_SERVOID_9 + SERVOMAX_pinky_A);        
-    //     pwm.setPWM(10, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
+    //     pwm.setPWM(11, 0, i*STEP_SERVOID_11+SERVOMIN_palm);
     //     i++;
     // }
 }
@@ -699,7 +699,7 @@ void signLangW(){
 void signLangY_array(){
     for (i = 0; i < 181; i++){
         for(servoid=0; servoid<11; servoid++){
-            if(servoid == 0 || servoid == 5 || servoid == 4 || servoid == 9 || servoid == 10){pwm.setPWM(servoid, 0,pulselen_from_degrees[servoid][0]);}
+            if(servoid == 0 || servoid == 5 || servoid == 4 || servoid == 9 || servoid == 11){pwm.setPWM(servoid, 0,pulselen_from_degrees[servoid][0]);}
             pwm.setPWM(servoid, 0, pulselen_from_degrees[servoid][i]); 
         }
     }
@@ -718,7 +718,7 @@ void signLangY(){
         pwm.setPWM(7, 0, i*STEP_SERVOID_7 + SERVOMIN_middle_A);
         pwm.setPWM(8, 0, i*STEP_SERVOID_8 + SERVOMIN_ring_A);
         pwm.setPWM(9, 0, SERVOMIN_pinky_A);
-        pwm.setPWM(10, 0, SERVOMAX_palm);
+        pwm.setPWM(11, 0, SERVOMAX_palm);
         i++;
     }
     // i=0;
@@ -733,7 +733,7 @@ void signLangY(){
     //     pwm.setPWM(7, 0, -i*STEP_SERVOID_7 + SERVOMAX_middle_A);
     //     pwm.setPWM(8, 0, -i*STEP_SERVOID_8 + SERVOMAX_ring_A);
     //     pwm.setPWM(9, 0, SERVOMAX_pinky_A);        
-    //     pwm.setPWM(10, 0, SERVOMIN_palm);
+    //     pwm.setPWM(11, 0, SERVOMIN_palm);
     //     i++;
     // }
 }
