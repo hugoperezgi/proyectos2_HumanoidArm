@@ -162,7 +162,45 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 uint8_t servoid = 0;
 uint8_t i = 0;
 uint8_t j = 0;
+bool singleLoop = true;
 
+void pointIndex(){
+  i=0;
+  while (i<90){
+    pwm.setPWM(0, 0, -i*2*STEP_SERVOID_0 + SERVOMAX_thumb_B);
+    pwm.setPWM(1, 0,  SERVOMAX_index_B);
+    pwm.setPWM(2, 0, -i*2*STEP_SERVOID_2 + SERVOMAX_middle_B);
+    pwm.setPWM(3, 0, -i*2*STEP_SERVOID_3 + SERVOMAX_ring_B);
+    pwm.setPWM(4, 0, -i*2*STEP_SERVOID_4 + SERVOMAX_pinky_B);
+    pwm.setPWM(5, 0, -i*2*STEP_SERVOID_5 + SERVOMAX_thumb_A);
+    pwm.setPWM(6, 0,  SERVOMAX_index_A);
+    pwm.setPWM(7, 0, -i*2*STEP_SERVOID_7 + SERVOMAX_middle_A);
+    pwm.setPWM(8, 0, -i*2*STEP_SERVOID_8 + SERVOMAX_ring_A);
+    pwm.setPWM(9, 0, -i*2*STEP_SERVOID_9 + SERVOMAX_pinky_A);      
+    pwm.setPWM(11, 0, i*2*STEP_SERVOID_11+ SERVOMIN_palm);
+    delay(5);
+    i++;
+  }
+  delay(25);
+}
+
+void lowerHand(){
+  j=0;
+  while (j<180){
+    pwm.setPWM(15, 0, j*STEP_SERVOID_15+SERVOMIN_wrist);
+    j++;
+    delay(10);
+  }
+}
+
+void raiseHand(){
+  j=0;
+  while (j<180){
+    pwm.setPWM(15, 0, -j*STEP_SERVOID_15+SERVOMAX_wrist);
+    j++;
+    delay(10);
+  }
+}
 
 void setup() {
   Serial.begin(9600);
@@ -178,42 +216,20 @@ void setup() {
 }
 
 void loop() {
+
+  pwm.setPWM(15, 0, 30*STEP_SERVOID_15+SERVOMIN_wrist);
+  delay(2000);
   //Cerrar mano quitando indice
-  i=0;
-  while (i<180){
-    pwm.setPWM(0, 0, -i*STEP_SERVOID_0 + SERVOMAX_thumb_B);
-    pwm.setPWM(1, 0,  SERVOMAX_index_B);
-    pwm.setPWM(2, 0, -i*STEP_SERVOID_2 + SERVOMAX_middle_B);
-    pwm.setPWM(3, 0, -i*STEP_SERVOID_3 + SERVOMAX_ring_B);
-    pwm.setPWM(4, 0, -i*STEP_SERVOID_4 + SERVOMAX_pinky_B);
-    pwm.setPWM(5, 0, -i*STEP_SERVOID_5 + SERVOMAX_thumb_A);
-    pwm.setPWM(6, 0,  SERVOMAX_index_A);
-    pwm.setPWM(7, 0, -i*STEP_SERVOID_7 + SERVOMAX_middle_A);
-    pwm.setPWM(8, 0, -i*STEP_SERVOID_8 + SERVOMAX_ring_A);
-    pwm.setPWM(9, 0, -i*STEP_SERVOID_9 + SERVOMAX_pinky_A);      
-    pwm.setPWM(11, 0, i*STEP_SERVOID_11+ SERVOMIN_palm);
-    delay(1);
-    i++;
-  }
+  pointIndex();
+  delay(5000);
+  
   //Bajar la mano (rotar la muñeca)
-  j=0;
-  while (j<180){
-    pwm.setPWM(15, 0, j*STEP_SERVOID_15+SERVOMIN_wrist);
-    j++;
-    delay(5);
-  }
-
+  lowerHand();
   delay(500);
+
   //Subir la mano (rotar la muñeca)
-  j=0;
-  while (j<180){
-    pwm.setPWM(15, 0, -j*STEP_SERVOID_15+SERVOMAX_wrist);
-    j++;
-    delay(5);
-  }
-
-
-
+  raiseHand();
+  delay(500);
 }
 
 

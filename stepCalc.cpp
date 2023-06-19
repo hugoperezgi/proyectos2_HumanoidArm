@@ -27,14 +27,16 @@ int main(){
         pulselen_from_degrees[servoid][i] = map(i,0,180,SERVOMINS_Fingers[servoid],SERVOMAXS_Fingers[servoid]);
         }
     }
-    float fuck;
+
+
+    float v;
     for(servoid=0;servoid<10;servoid++){
-        fuck=0;
+        v=0;
         for(i=0;i<180;i++){
-            fuck+=pulselen_from_degrees[servoid][i+1]-pulselen_from_degrees[servoid][i];
+            v+=pulselen_from_degrees[servoid][i+1]-pulselen_from_degrees[servoid][i];
         }
-        fuck/=180;
-        pulse_step_hand[servoid]=fuck;
+        v/=180;
+        pulse_step_hand[servoid]=v;
     }
 
     for(servoid=0; servoid<10; servoid++){
@@ -48,12 +50,12 @@ int main(){
     }
     
     for(servoid=0;servoid<5;servoid++){
-        fuck=0;
+        v=0;
         for(i=0;i<180;i++){
-            fuck+=pulselen_from_degrees_arm[servoid][i+1]-pulselen_from_degrees_arm[servoid][i];
+            v+=pulselen_from_degrees_arm[servoid][i+1]-pulselen_from_degrees_arm[servoid][i];
         }
-        fuck/=180;
-        pulse_step_arm[servoid]=fuck;
+        v/=180;
+        pulse_step_arm[servoid]=v;
     }
     
     for(servoid=0; servoid<5; servoid++){
@@ -70,6 +72,7 @@ int main(){
     float nSize = 15*sizeof(float)+30*sizeof(uint16_t); //15 Step values + 15(x2) Min/Max Values
 
     printf("Original size: %i B, new size: %i B. Saved %i bytes (%f%).\n",int(oSize),int(nSize),int(oSize-nSize),((oSize-nSize)/oSize)*100);
+    printf("Size of float: %i",sizeof(float));
 
     // for (i = 0; i < 181; i++){
     //     for(servoid=0; servoid<10; servoid++){    
