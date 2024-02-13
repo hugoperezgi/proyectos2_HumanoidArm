@@ -219,17 +219,16 @@ void loop() {
 
   pwm.setPWM(15, 0, 30*STEP_SERVOID_15+SERVOMIN_wrist);
   delay(2000);
-  //Cerrar mano quitando indice
+  //Close all fingers but index
   pointIndex();
   delay(5000);
-  
-  //Bajar la mano (rotar la muñeca)
+  //Lower hand (rotate wrist)
   lowerHand();
   delay(500);
-
-  //Subir la mano (rotar la muñeca)
+  //Raise hand (rotate wrist)
   raiseHand();
   delay(500);
+  
 }
 
 
